@@ -2,8 +2,10 @@
 #
 # system-cleanup.sh
 # Debian / DietPi maintenance & cleanup script
-# Safe for Raspberry Pi & servers
 #
+# Author: Janne Heinikangas
+# Repo: https://github.com/KAYTTAJA/system-cleanup
+# License: MIT / Free use
 
 set -e
 
