@@ -53,13 +53,13 @@ journalctl --vacuum-time=2weeks
 
 Sopiva kompromissi levytilan ja diagnostiikan välillä.
 
-5  Väliaikaistiedostot
+5️⃣ Väliaikaistiedostot
 
 Tyhjentää:
 	•	/tmp
 	•	/var/tmp
 
-6 Käyttäjäkohtaiset cachet
+6️⃣ Käyttäjäkohtaiset cachet
 
 Poistaa kaikkien käyttäjien .cache-hakemistojen sisällön:
 
