@@ -1,4 +1,4 @@
-🧹 system-cleanup.sh
+# 🧹 system-cleanup.sh
 
 Debian / DietPi huolto ja puhdistusskripti
 Turvallinen huoltoskripti Raspberry Pi -laitteille ja Linux-palvelimille.
