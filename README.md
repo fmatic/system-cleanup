@@ -27,31 +27,39 @@ Skripti on suunniteltu turvalliseksi ja ei-tuhoavaksi:
 
 Skripti varmistaa, että se ajetaan root-oikeuksilla:
 
+```bash
 sudo ./system-cleanup.sh
+```
 
 2️⃣ Muistin tila (ennen)
 
 Tulostaa RAM- ja swap-tilanteen ennen huoltoa:
 
+```bash
 free -h
+```
 
 3️⃣ APT-huolto
 	•	Poistaa käyttämättömät paketit
 	•	Poistaa myös niiden konffit (--purge)
 	•	Tyhjentää APT-välimuistin
 
+```bash
 apt-get autoremove -y
 apt-get autoremove --purge -y
 apt-get clean
 apt-get autoclean
+```
 
 4️⃣ systemd journal -lokien siivous
 
 Poistaa yli 2 viikkoa vanhat journal-lokit:
 
+```bash
 journalctl --vacuum-time=2weeks
-
+```
 Sopiva kompromissi levytilan ja diagnostiikan välillä.
+
 
 5️⃣ Väliaikaistiedostot
 
@@ -62,8 +70,9 @@ Tyhjentää:
 6️⃣ Käyttäjäkohtaiset cachet
 
 Poistaa kaikkien käyttäjien .cache-hakemistojen sisällön:
-
+```bash
 /home/*/.cache/*
+```
 
  Huomio:
 	•	Ei poista itse .cache-hakemistoja
@@ -74,10 +83,10 @@ Poistaa kaikkien käyttäjien .cache-hakemistojen sisällön:
 7️⃣ RAM-välimuistin tyhjennys
 
 Pakottaa Linuxin vapauttamaan levyvälimuistit:
-
+```bash
 sync
 echo 3 > /proc/sys/vm/drop_caches
-
+```
 Hyödyllinen erityisesti:
 	•	vähämuistisilla Raspberry Pi -laitteilla
 	•	pitkään uptimea keränneillä palvelimilla
@@ -88,9 +97,10 @@ Hyödyllinen erityisesti:
 
 Jos swap on käytössä:
 
+```bash
 swapoff -a
 swapon -a
-
+```
 Tämä:
 	•	vapauttaa fragmentoituneen swapin
 	•	ei tee mitään, jos swap ei ole käytössä
@@ -101,7 +111,9 @@ Tämä:
 
 Pakottaa lokien rotaation:
 
+```bash
 logrotate -f /etc/logrotate.conf
+```
 
 Virheet ohitetaan, jotta skripti ei keskeydy.
 
@@ -111,7 +123,9 @@ Virheet ohitetaan, jotta skripti ei keskeydy.
 
 Näyttää RAM-tilanteen huollon jälkeen:
 
+```bash
 free -h
+```
 
 ✅ Kenelle tämä skripti sopii?
 
@@ -127,9 +141,12 @@ free -h
 
 Aja kerran kuussa:
 
+```bash
 sudo crontab -e
-
+```
+```bash
 0 3 1 * * /usr/local/sbin/system-cleanup.sh >> /var/log/system-cleanup.log 2>&1
+```
 
  Turvallisuus
 	•	Ei poista käyttäjätiedostoja
